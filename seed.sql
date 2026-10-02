@@ -1,3 +1,15 @@
+TRUNCATE TABLE 
+    PAYMENTS, 
+    BOOKING_SERVICES, 
+    BOOKINGS, 
+    HOUSEKEEPING, 
+    GUESTS, 
+    ROOMS, 
+    ROOM_TYPES, 
+    STAFF, 
+    SERVICES 
+RESTART IDENTITY CASCADE;
+
 INSERT INTO STAFF (first_name, last_name, role, phone) 
 VALUES
 ('Александр', 'Иванов', 'Директор', '+375291112233'),
@@ -93,6 +105,17 @@ INSERT INTO SERVICES (name, price, description) VALUES
 ('Услуги консьержа',1000.00,'Помощь в организации досуга'),
 ('Хранение багажа',400.00,'Камера хранения на сутки');
 
+INSERT INTO ROOMS (room_type_id, room_number, floor, status) VALUES
+(1,'101',1,'available'),(2,'102',1,'occupied'),(2,'103',1,'cleaning'),
+(3,'201',2,'available'),(1,'202',2,'maintenance'),(2,'203',2,'available'),
+(3,'301',3,'occupied'),(2,'302',3,'available'),(2,'303',3,'cleaning'),
+(5,'401',4,'available'),(5,'402',4,'occupied'),(3,'403',4,'available'),
+(4,'501',5,'maintenance'),(4,'502',5,'available'),(5,'503',5,'occupied'),
+(6,'601',6,'available'),(6,'602',6,'cleaning'),(4,'603',6,'available'),
+(7,'701',7,'occupied'),(7,'702',7,'available'),(6,'703',7,'available'),
+(7,'801',8,'maintenance'),(8,'802',8,'available'),(8,'803',8,'occupied'),
+(8,'901',9,'available');
+
 
 INSERT INTO BOOKINGS (guest_id, room_id, check_in, check_out, status, total_price) VALUES
 (1,1,'2026-10-01','2026-10-05','confirmed',24000.00),
@@ -120,18 +143,6 @@ INSERT INTO BOOKINGS (guest_id, room_id, check_in, check_out, status, total_pric
 (23,23,'2026-10-23','2026-10-28','confirmed',35000.00),
 (24,24,'2026-10-24','2026-10-27','pending',21000.00),
 (25,25,'2026-10-25','2026-10-30','confirmed',35000.00);
-
-
-INSERT INTO ROOMS (room_type_id, room_number, floor, status) VALUES
-(1,'101',1,'available'),(2,'102',1,'occupied'),(2,'103',1,'cleaning'),
-(3,'201',2,'available'),(1,'202',2,'maintenance'),(2,'203',2,'available'),
-(3,'301',3,'occupied'),(2,'302',3,'available'),(2,'303',3,'cleaning'),
-(5,'401',4,'available'),(5,'402',4,'occupied'),(3,'403',4,'available'),
-(4,'501',5,'maintenance'),(4,'502',5,'available'),(5,'503',5,'occupied'),
-(6,'601',6,'available'),(6,'602',6,'cleaning'),(4,'603',6,'available'),
-(7,'701',7,'occupied'),(7,'702',7,'available'),(6,'703',7,'available'),
-(7,'801',8,'maintenance'),(8,'802',8,'available'),(8,'803',8,'occupied'),
-(8,'901',9,'available');
 
 
 INSERT INTO HOUSEKEEPING (room_id, staff_id, task_type, status, scheduled_at, completed_at) 
